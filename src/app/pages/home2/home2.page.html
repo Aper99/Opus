@@ -21,37 +21,22 @@
 </ion-header>
 
 <ion-content fullscreen="true">
-  <h3>Listado de Tareas</h3>
-
-  <ion-card>
-    <ion-card-header>
-      <ion-card-subtitle>#0001</ion-card-subtitle>
-      <ion-card-title>Ir a revisar la pc del cliente</ion-card-title>
-    </ion-card-header>
-  </ion-card>
-
-  <ion-list inset="true" >
+  <ion-list inset="true">
     <ion-list-header>Listado de Tareas </ion-list-header>
 
-    <ion-item *ngFor="let tarea of tareas" lines="full" >
-      <ion-label>
-        <ion-row  class="ion-justify-content-between">
-          <ion-col size="8"><h2>#{{tarea.numero}}</h2></ion-col>
-          <ion-col size="auto"><p>{{tarea.hora}} {{tarea.fecha}}</p></ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col><p>{{tarea.cliente}}</p></ion-col>
-          <ion-col><p>{{tarea.ruta}}</p></ion-col>
-          <ion-col><p>{{tarea.sistema}}</p></ion-col>
-          <ion-col size="auto"><p>{{tarea.estado}}</p></ion-col>
-        </ion-row>
-        <p>{{tarea.descripcion}}</p>
+    <ion-item *ngFor="let tarea of tareas" lines="full">
+      
+      <ion-label style="display: flex; flex-wrap: wrap;">
+        <h5 style="width: 100%;">{{tarea.descripcion}}</h5>
+        <h2 style="width: 55%;">#{{tarea.numero}}</h2>
+        <p style="width: 45%; text-align: end;"> {{tarea.hora}} {{tarea.fecha}}</p>
+        <p style="width: 60%;">{{tarea.cliente}}</p>
+        <p style="width: 40%; text-align: end;">{{tarea.ruta}}</p>
+        <p style="width: 60%;">{{tarea.sistema}}</p>
+        <p style="width: 40%; text-align: end;">{{tarea.estado}}</p>
       </ion-label>
-      <ion-note slot="end">On</ion-note>
+
     </ion-item>
-
-    
-
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
@@ -59,5 +44,4 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-
 </ion-content>
