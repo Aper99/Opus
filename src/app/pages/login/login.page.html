@@ -1,0 +1,22 @@
+<ion-content style="display: flex">
+  <ion-grid style="height: 100vh;">
+    <ion-row class="ion-justify-content-center" style="height: 100vh;">
+      <ion-col size-sm="6" class="ion-align-self-center">
+        <ion-card class="ion-padding">
+          <h1>Iniciar Sesion</h1>
+          <ion-item>
+            <ion-label position="floating">Usuario</ion-label>
+            <ion-input></ion-input>
+          </ion-item>
+          <ion-item class="ion-margin-top">
+            <ion-label position="floating">Contrase&ntilde;a</ion-label>
+            <ion-input></ion-input>
+          </ion-item>
+          <br />
+          <ion-button expand="block" [routerLink]="['/home']" >Iniciar Sesion</ion-button>
+          <ion-button expand="block" color="secondary">Registrarse</ion-button>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

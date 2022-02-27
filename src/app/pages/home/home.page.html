@@ -1,0 +1,59 @@
+<ion-header [translucent]="true">
+  <ion-toolbar [color]="'primary'">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Tareas</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment value="all">
+      <ion-segment-button value="all">
+        <ion-label>Todos</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="pedientes">
+        <ion-label>Pendientes</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="cerrados">
+        <ion-label>Cerrados</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <h3>Listado de Tareas</h3>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>#0001</ion-card-subtitle>
+      <ion-card-title>Ir a revisar la pc del cliente</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-list>
+    <ion-list-header>Listado de Tareas </ion-list-header>
+
+    <ion-item *ngFor="let tarea of tareas">
+      <ion-label>
+        <ion-row  class="ion-justify-content-between">
+          <ion-col size="8"><h2>#{{tarea.numero}}</h2></ion-col>
+          <ion-col size="auto"><p>{{tarea.hora}} {{tarea.fecha}}</p></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col><p>{{tarea.cliente}}</p></ion-col>
+          <ion-col><p>{{tarea.ruta}}</p></ion-col>
+          <ion-col><p>{{tarea.sistema}}</p></ion-col>
+          <ion-col size="auto"><p>{{tarea.estado}}</p></ion-col>
+        </ion-row>
+        <p>{{tarea.descripcion}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
