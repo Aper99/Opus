@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-home2',
-  templateUrl: './home2.page.html',
-  styleUrls: ['./home2.page.scss'],
+  selector: 'app-home3',
+  templateUrl: './home3.page.html',
+  styleUrls: ['./home3.page.scss'],
 })
-export class Home2Page implements OnInit {
+export class Home3Page implements OnInit {
+
 
   tareas: Tarea[] = [
     {
@@ -43,12 +44,9 @@ export class Home2Page implements OnInit {
     }
   ];
 
+  constructor() { }
 
-  constructor() {
-
-  }
-  ngOnInit(): void {
-
+  ngOnInit() {
   }
 
   colorEstado(estado: string): string{
@@ -61,8 +59,8 @@ export class Home2Page implements OnInit {
       return 'light';
   }
 }
-
 }
+
 
 interface Tarea {
   numero: number;
@@ -74,3 +72,6 @@ interface Tarea {
   estado: string;
   descripcion: string;
 }
+
+
+

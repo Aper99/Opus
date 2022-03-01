@@ -26,14 +26,16 @@
 
     <ion-item *ngFor="let tarea of tareas" lines="full">
       
-      <ion-label style="display: flex; flex-wrap: wrap;">
-        <h5 style="width: 100%;">{{tarea.descripcion}}</h5>
-        <h2 style="width: 55%;">#{{tarea.numero}}</h2>
-        <p style="width: 45%; text-align: end;"> {{tarea.hora}} {{tarea.fecha}}</p>
-        <p style="width: 60%;">{{tarea.cliente}}</p>
-        <p style="width: 40%; text-align: end;">{{tarea.ruta}}</p>
-        <p style="width: 60%;">{{tarea.sistema}}</p>
-        <p style="width: 40%; text-align: end;">{{tarea.estado}}</p>
+      <ion-label style="display: grid; grid-template-columns:  auto 2fr 1fr auto; justify-content: space-between;">
+        <h5 style="grid-column: 1 /-1;">{{tarea.descripcion}}</h5>
+        <h2 style="grid-column: 1 /3;">#{{tarea.numero}}</h2>
+        <p style="grid-column: 3 /5; text-align: end;"> {{tarea.hora}} {{tarea.fecha}}</p>
+        <ion-icon name="paper-plane-outline" style="grid-column: 1 /2;"></ion-icon>
+        <p style="grid-column: 2 /3;">{{tarea.cliente}}</p>
+        <p style="grid-column: 3 /5; justify-self: end;">{{tarea.ruta}}</p>
+        <p style="grid-column: 1 /3;">{{tarea.sistema}}</p>
+        <ion-badge [color]="colorEstado(tarea.estado)" style=" grid-column: 4 /5;">{{tarea.estado}}</ion-badge>
+        
       </ion-label>
 
     </ion-item>

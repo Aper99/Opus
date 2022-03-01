@@ -34,20 +34,24 @@
     <ion-list-header>Listado de Tareas </ion-list-header>
 
     <ion-item *ngFor="let tarea of tareas" lines="full" >
+      
       <ion-label>
+      <ion-grid >
         <ion-row  class="ion-justify-content-between">
-          <ion-col size="8"><h2>#{{tarea.numero}}</h2></ion-col>
+          <ion-col size="auto"><h2>#{{tarea.numero}}</h2></ion-col>
           <ion-col size="auto"><p>{{tarea.hora}} {{tarea.fecha}}</p></ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col><p>{{tarea.cliente}}</p></ion-col>
-          <ion-col><p>{{tarea.ruta}}</p></ion-col>
-          <ion-col><p>{{tarea.sistema}}</p></ion-col>
-          <ion-col size="auto"><p>{{tarea.estado}}</p></ion-col>
+        <ion-row class="ion-justify-content-between" style="text-overflow: ellipsis; ">
+          <ion-col style="text-overflow: ellipsis;"><ion-icon name="person-outline" ></ion-icon><p  style="text-overflow: ellipsis; overflow: hidden;">{{tarea.cliente}}</p></ion-col>
+          <ion-col ><ion-icon name="paper-plane-outline" class="ion-float-left"></ion-icon><p>{{tarea.ruta}}</p></ion-col>
+          <ion-col ><ion-icon name="clipboard-outline" class="ion-float-left"></ion-icon><p>{{tarea.sistema}}</p></ion-col>
+          <ion-col><p>{{tarea.estado}}</p></ion-col>
         </ion-row>
-        <p>{{tarea.descripcion}}</p>
+        
+      </ion-grid>
+      <p>{{tarea.descripcion}}</p>
       </ion-label>
-      <ion-note slot="end">On</ion-note>
+   
     </ion-item>
 
     
