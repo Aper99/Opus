@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-back-button slot="start" defaultHref="/home"></ion-back-button>
+    <ion-title>Crear Tarea</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="ion-padding" >
+    <ion-item fill="outline" class="ion-margin-bottom" >
+      <ion-icon name="calendar-clear-outline" slot="start"></ion-icon>
+      <ion-label position="floating">Fecha</ion-label>
+      <ion-input type="datetime-local" placeholder="Ingrese una fecha"></ion-input>
+    </ion-item>
+    <ion-item fill="outline" class="ion-margin-bottom">
+      <ion-icon name="storefront-outline" slot="start"></ion-icon>
+      <ion-label position="floating">Cliente</ion-label>
+      <ion-select value="brown" >
+        <ion-select-option value="brown">Empresa S.A</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item fill="outline" class="ion-margin-bottom">
+      <ion-icon name="bookmark-outline" slot="start"></ion-icon>
+      <ion-label position="floating" >Sistema</ion-label>
+      <ion-select value="brown" >
+        <ion-select-option value="brown">Sistema 1</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item fill="outline" class="ion-margin-bottom">
+      <ion-icon name="person-outline" slot="start"></ion-icon>
+      <ion-label position="floating" >Responsable</ion-label>
+      <ion-select value="brown" >
+        <ion-select-option value="brown">Empleado 1</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item fill="outline" class="ion-margin-bottom">
+      <ion-label position="floating" >Descripción</ion-label>
+      <ion-textarea autoGrow="true" spellcheck="true"></ion-textarea>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-button expand="block" [routerLink]="['/home']" >Guardar Tarea</ion-button>
+
+</ion-content>
