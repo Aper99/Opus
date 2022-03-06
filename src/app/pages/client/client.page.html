@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-back-button slot="start" defaultHref="/home"></ion-back-button>
+    <ion-title>Crear Cliente</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="ion-padding" >
+    <ion-item fill="outline" class="ion-margin-bottom">
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline" class="ion-margin-bottom">
+      <ion-label position="floating">R.U.C o C.I</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline" class="ion-margin-bottom">
+      <ion-label position="floating">Telefono</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline" class="ion-margin-bottom">
+      <ion-label position="floating">E-mail</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline" class="ion-margin-bottom">
+      <ion-label position="floating">Direccion</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline" class="ion-margin-bottom">
+      <ion-label position="floating">Ruta</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+
+  </ion-list>
+
+  <ion-button expand="block" [routerLink]="['/clients']" >Guardar Cliente</ion-button>
+
+</ion-content>
