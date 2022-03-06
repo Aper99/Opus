@@ -3,9 +3,33 @@
     <ion-toolbar translucent color="tertiary">
       <ion-title>Menu</ion-title>
     </ion-toolbar>
+    <ion-item lines="none">
+      <ion-avatar slot="start">
+        <img
+              src="https://www.slotcharter.net/wp-content/uploads/2020/02/no-avatar.png"
+            />
+      </ion-avatar>
+      <ion-label>
+        <h2>Empleado 1</h2>
+        <p>Empresa Falsa</p>
+      </ion-label>
+    </ion-item>
   </ion-header>
   <ion-content>
     <ion-list>
+      <ion-item [routerLink]="'/home'">
+        <ion-icon name="reader" slot="start"></ion-icon>
+        <ion-label>Tareas</ion-label>
+      </ion-item>
+      <ion-item [routerLink]="'/clients'">
+        <ion-icon name="people" slot="start"></ion-icon>
+        <ion-label>Clientes</ion-label>
+      </ion-item>
+      <ion-item [routerLink]="'/systems'">
+        <ion-icon name="bookmark" slot="start"></ion-icon>
+        <ion-label>Sistemas</ion-label>
+      </ion-item>
+
       <ion-item>
         <ion-icon name="settings" slot="start"></ion-icon>
         <ion-label>Configuraciones</ion-label>

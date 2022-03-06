@@ -4,6 +4,11 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Tareas</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="sync-outline" slot=""></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
   <ion-toolbar>
     <ion-segment value="all">
@@ -70,7 +75,7 @@
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="tertiary">
+    <ion-fab-button color="tertiary" [routerLink]="'/create-task'">
       <ion-icon name="add" ></ion-icon>
     </ion-fab-button>
   </ion-fab>
