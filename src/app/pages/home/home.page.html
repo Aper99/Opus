@@ -23,31 +23,44 @@
 <ion-content fullscreen="true">
   <h3>Listado de Tareas</h3>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-subtitle>#0001</ion-card-subtitle>
-      <ion-card-title>Ir a revisar la pc del cliente</ion-card-title>
-    </ion-card-header>
-  </ion-card>
-
-  <ion-list>
+  <ion-list inset="true">
     <ion-list-header>Listado de Tareas </ion-list-header>
 
-    <ion-item *ngFor="let tarea of tareas">
-      <ion-label>
-        <ion-row  class="ion-justify-content-between">
-          <ion-col size="8"><h2>#{{tarea.numero}}</h2></ion-col>
-          <ion-col size="auto"><p>{{tarea.hora}} {{tarea.fecha}}</p></ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col><p>{{tarea.cliente}}</p></ion-col>
-          <ion-col><p>{{tarea.ruta}}</p></ion-col>
-          <ion-col><p>{{tarea.sistema}}</p></ion-col>
-          <ion-col size="auto"><p>{{tarea.estado}}</p></ion-col>
-        </ion-row>
+    <ion-card *ngFor="let tarea of tareas" lines="full">
+      <ion-card-header>
+        <ion-item>
+          <ion-avatar slot="start">
+            <img
+              src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"
+            />
+          </ion-avatar>
+          <ion-label>
+            
+              <h2>#{{tarea.numero}}</h2>
+
+              <ion-chip>
+                <ion-icon name="person-outline" slot="end"></ion-icon>
+              <ion-label><p>{{tarea.hora}} {{tarea.fecha}}</p></ion-label>
+            </ion-chip>
+              <ion-icon name="person-outline"></ion-icon>
+              <p>{{tarea.cliente}}</p>
+              <ion-icon
+                name="paper-plane-outline"
+                [hidden]="!tarea.ruta"
+              ></ion-icon>
+              <p>{{tarea.ruta}}</p>
+              <ion-icon name="clipboard-outline"></ion-icon>
+              <p>{{tarea.sistema}}</p>
+              <p>{{tarea.estado}}</p>
+            
+          </ion-label>
+        </ion-item>
+      </ion-card-header>
+
+      <ion-card-content>
         <p>{{tarea.descripcion}}</p>
-      </ion-label>
-    </ion-item>
+      </ion-card-content>
+    </ion-card>
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
@@ -55,5 +68,4 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-
 </ion-content>

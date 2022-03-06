@@ -1,0 +1,82 @@
+<ion-header [translucent]="true">
+  <ion-toolbar [color]="'primary'">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Tareas</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="sync-outline" slot=""></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment value="all">
+      <ion-segment-button value="all">
+        <ion-label>Todos</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="pedientes">
+        <ion-label>Pendientes</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="cerrados">
+        <ion-label>Cerrados</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <ion-list>
+    <ion-list-header>Listado de Tareas </ion-list-header>
+
+    <ion-card *ngFor="let tarea of tareas">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-item>
+            <ion-label><h2>#{{tarea.numero}}</h2></ion-label>
+            <ion-badge [color]="colorEstado(tarea.estado)">
+              {{tarea.estado}}
+            </ion-badge>
+          </ion-item>
+        </ion-card-title>
+        <ion-card-subtitle style="display: flex; flex-wrap: wrap; align-items: flex-start;">
+          <ion-badge color="secondary" class="ion-margin-end">
+            <ion-icon name="calendar-clear-outline"></ion-icon>
+            <ion-label>{{tarea.hora}} {{tarea.fecha}}</ion-label>
+          </ion-badge>
+          <ion-badge color="secondary" class="ion-margin-end ion-margin-bottom">
+            <ion-icon name="pin"></ion-icon>
+            <ion-label>{{tarea.cliente}}</ion-label>
+          </ion-badge>
+          <ion-badge
+            color="secondary"
+            [hidden]="!tarea.ruta"
+            class="ion-margin-end"
+          >
+            <ion-icon name="navigate-outline"></ion-icon>
+            <ion-label> {{tarea.ruta}}</ion-label>
+          </ion-badge>
+          <ion-badge color="secondary" class="ion-margin-end">
+            <ion-icon name="bookmark-outline"></ion-icon>
+            <ion-label> {{tarea.sistema}}</ion-label>
+          </ion-badge>
+          <div style="flex: 1 1 auto"></div>
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p
+          style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap"
+        >
+          {{tarea.descripcion}}
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="tertiary" [routerLink]="'/create-task'">
+      <ion-icon name="add" ></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
