@@ -27,9 +27,9 @@
 
 <ion-content fullscreen="true">
   <ion-list>
-    <ion-list-header>Listado de Tareas </ion-list-header>
+    <ion-list-header><h2>Listado de Tareas</h2></ion-list-header>
 
-    <ion-card *ngFor="let tarea of tareas">
+    <ion-card *ngFor="let tarea of tareas" [routerLink]="'/task'">
       <ion-card-header>
         <ion-card-title>
           <ion-item>
