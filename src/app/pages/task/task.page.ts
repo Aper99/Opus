@@ -11,12 +11,12 @@ export class TaskPage implements OnInit {
     numero: 81470,
     fecha: '21/12/2021',
     hora: '14:30',
-    cliente: 'Fer Buen Amigo',
+    cliente: 'Empresa S.A',
     ruta: 'R2,6',
-    sistema: 'BARIS',
+    sistema: 'Sistema 2',
     estado: 'Activo',
     // eslint-disable-next-line max-len
-    descripcion: 'Este cliente imprime su informe en matricial, entonces moleta ese fondo gris que tiene nuestro informe de cuenta. Verificar para colocar una configuracion si es que quiere que no aparezca zebrado los informes',
+    descripcion: 'Este cliente tiene problemas con su impresora. Verificar si no le falta toner y comprar en caso de que sea necesario',
   };
 
   constructor() { }

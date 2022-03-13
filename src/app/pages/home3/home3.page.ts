@@ -13,34 +13,34 @@ export class Home3Page implements OnInit {
       numero: 81470,
       fecha: '21/12/2021',
       hora: '14:30',
-      cliente: 'Fer Buen Amigo',
+      cliente: 'Empresa S.A',
       ruta: 'R2,6',
-      sistema: 'BARIS',
-      estado: 'Cerrado',
+      sistema: 'Sistema 2',
+      estado: 'Activo',
       // eslint-disable-next-line max-len
-      descripcion: 'Este cliente imprime su informe en matricial, entonces moleta ese fondo gris que tiene nuestro informe de cuenta. Verificar para colocar una configuracion si es que quiere que no aparezca zebrado los informes',
+      descripcion: 'Este cliente tiene problemas con su impresora. Verificar si no le falta toner y comprar en caso de que sea necesario',
     },
     {
       numero: 75796,
       fecha: '02/09/2021',
       hora: '14:10',
-      cliente: 'JHF Informatica',
+      cliente: 'Informatica S.A',
       ruta: '',
       sistema: 'Tareas Tecnicas',
-      estado: 'Activo',
+      estado: 'Cerrado',
       // eslint-disable-next-line max-len
-      descripcion: 'Este cliente imprime su informe en matricial, entonces moleta ese fondo gris que tiene nuestro informe de cuenta. Verificar para colocar una configuracion si es que quiere que no aparezca zebrado los informes',
+      descripcion: 'Verificacion del estado de los servidores',
     },
     {
       numero: 81475,
       fecha: '21/12/2021',
       hora: '14:30',
-      cliente: 'Rigmar Fabrica',
+      cliente: 'Fabrica de Colchones',
       ruta: 'R7',
       sistema: 'Programacion',
       estado: 'Cerrado',
       // eslint-disable-next-line max-len
-      descripcion: 'Este cliente imprime su informe en matricial, entonces moleta ese fondo gris que tiene nuestro informe de cuenta. Verificar para colocar una configuracion si es que quiere que no aparezca zebrado los informes',
+      descripcion: 'Crear un reporte de las ventas del mes',
     }
   ];
 
