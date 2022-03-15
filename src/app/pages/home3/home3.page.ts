@@ -27,7 +27,7 @@ export class Home3Page implements OnInit {
       cliente: 'Informatica S.A',
       ruta: '',
       sistema: 'Tareas Tecnicas',
-      estado: 'Cerrado',
+      estado: 'Inactivo',
       // eslint-disable-next-line max-len
       descripcion: 'Verificacion del estado de los servidores',
     },
@@ -38,7 +38,7 @@ export class Home3Page implements OnInit {
       cliente: 'Fabrica de Colchones',
       ruta: 'R7',
       sistema: 'Programacion',
-      estado: 'Cerrado',
+      estado: 'Finalizado',
       // eslint-disable-next-line max-len
       descripcion: 'Crear un reporte de las ventas del mes',
     }
@@ -53,7 +53,7 @@ export class Home3Page implements OnInit {
   switch (estado) {
     case 'Activo':
       return 'success';
-    case 'Cerrado':
+    case 'Finalizado':
         return 'danger';
     default:
       return 'light';

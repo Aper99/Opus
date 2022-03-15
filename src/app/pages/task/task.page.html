@@ -9,9 +9,14 @@
   <ion-card>
     <img src="assets\map_pin.PNG" />
     <ion-card-header>
+      <ion-item class="ion-margin-bottom">
+        <ion-label>En progreso</ion-label>
+        <ion-toggle slot="end"></ion-toggle>
+      </ion-item>
       <ion-badge [color]="colorEstado(tarea.estado)">
         {{tarea.estado}}
       </ion-badge>
+
       <ion-card-subtitle
         style="display: flex; flex-wrap: wrap; align-items: flex-start"
       >
@@ -42,8 +47,8 @@
     <ion-card-content>
       <p>{{tarea.descripcion}}</p>
 
-      <ion-item fill="outline" class="ion-margin-top ion-margin-bottom" >
-        <ion-label position="floating" >Observación</ion-label>
+      <ion-item fill="outline" class="ion-margin-top ion-margin-bottom">
+        <ion-label position="floating">Observación</ion-label>
         <ion-textarea autoGrow="true" spellcheck="true"></ion-textarea>
       </ion-item>
 
@@ -54,7 +59,6 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-
     </ion-card-content>
   </ion-card>
 </ion-content>
