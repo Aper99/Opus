@@ -12,6 +12,10 @@ const routes: Routes = [
         loadChildren: () => import('../../pages/home3/home3.module').then( m => m.Home3PageModule)
       },
       {
+        path: 'routes',
+        loadChildren: () => import('../../pages/routes/routes.module').then( m => m.RoutesPageModule)
+      },
+      {
         path: '',
         redirectTo: 'tasks',
         pathMatch: 'full'

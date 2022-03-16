@@ -38,10 +38,8 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./components/tab/tab.module').then( m => m.TabPageModule)
-  },  {
-    path: 'routes',
-    loadChildren: () => import('./pages/routes/routes.module').then( m => m.RoutesPageModule)
   },
+
 
 
 ];

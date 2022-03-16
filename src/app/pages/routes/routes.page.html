@@ -1,9 +1,39 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>routes</ion-title>
+<ion-header [translucent]="true">
+  <ion-toolbar [color]="'primary'">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Rutas</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="sync-outline" slot=""></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen="true">
+  <ion-list>
+    <ion-list-header><h2>Listado de Rutas</h2></ion-list-header>
 
+    <ion-card *ngFor="let ruta of rutas">
+  
+      <ion-accordion-group>
+        <ion-accordion value="rutas">
+          <ion-item slot="header">
+            <ion-label>{{ruta.nombre}}</ion-label>
+            <ion-badge slot="end">30</ion-badge>
+          </ion-item>
+      
+          <ion-list slot="content">
+            <ion-item *ngFor="let cliente of ruta.clientes">
+              <ion-label>{{cliente.nombre}}</ion-label>
+              <ion-badge slot="end">10</ion-badge>
+            </ion-item>
+  
+          </ion-list>
+        </ion-accordion>
+      </ion-accordion-group>
+    </ion-card>
+  </ion-list>
 </ion-content>
