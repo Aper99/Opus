@@ -1,9 +1,39 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>topics</ion-title>
+<ion-header [translucent]="true">
+  <ion-toolbar [color]="'primary'">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Sistemas</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="sync-outline" slot=""></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content>
 
+  <ion-list>
+    <ion-list-header>
+      <h2>Listado de Sistemas</h2>
+    </ion-list-header>
+    <ion-item *ngFor="let topic of topics">
+      <ion-icon name="bookmark" slot="start"></ion-icon>
+      <ion-label>
+        <h2>Sistema {{topic}}</h2>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="tertiary" [routerLink]="'/topic'">
+      <ion-icon name="add" ></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 </ion-content>
+
+
+  
