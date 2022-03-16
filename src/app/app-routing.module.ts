@@ -38,7 +38,15 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./components/tab/tab.module').then( m => m.TabPageModule)
+  },  {
+    path: 'create-route',
+    loadChildren: () => import('./pages/create-route/create-route.module').then( m => m.CreateRoutePageModule)
   },
+  {
+    path: 'topics',
+    loadChildren: () => import('./pages/topics/topics.module').then( m => m.TopicsPageModule)
+  },
+
 
 
 
