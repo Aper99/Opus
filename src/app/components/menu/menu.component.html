@@ -18,9 +18,14 @@
   <ion-content>
     <ion-list>
       <ion-menu-toggle autoHide="false">
-      <ion-item [routerLink]="'/home'" routerLinkActive="selected">
+      <ion-item [routerLink]="'/home/tasks'" routerLinkActive="selected">
         <ion-icon name="reader" slot="start"></ion-icon>
         <ion-label>Tareas</ion-label>
+      </ion-item>
+
+      <ion-item [routerLink]="'/home/routes'" routerLinkActive="selected">
+        <ion-icon name="navigate" slot="start"></ion-icon>
+        <ion-label>Rutas</ion-label>
       </ion-item>
     
       <ion-item [routerLink]="'/clients'" routerLinkActive="selected">
