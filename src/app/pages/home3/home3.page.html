@@ -34,6 +34,7 @@
     <ion-list-header><h2>Listado de Tareas</h2></ion-list-header>
 
     <ion-card *ngFor="let tarea of tareas" [routerLink]="'/task'">
+
       <ion-card-header>
         <ion-card-title>
           <ion-item>
@@ -44,7 +45,7 @@
           </ion-item>
         </ion-card-title>
         <ion-card-subtitle style="display: flex; flex-wrap: wrap; align-items: flex-start;">
-          <ion-badge color="secondary" class="ion-margin-end">
+          <ion-badge color="secondary" class="ion-margin-end ion-margin-bottom">
             <ion-icon name="calendar-clear-outline"></ion-icon>
             <ion-label>{{tarea.hora}} {{tarea.fecha}}</ion-label>
           </ion-badge>
@@ -55,12 +56,12 @@
           <ion-badge
             color="secondary"
             [hidden]="!tarea.ruta"
-            class="ion-margin-end"
+            class="ion-margin-end ion-margin-bottom"
           >
             <ion-icon name="navigate-outline"></ion-icon>
             <ion-label> {{tarea.ruta}}</ion-label>
-          </ion-badge>
-          <ion-badge color="secondary" class="ion-margin-end">
+          </ion-badge >
+          <ion-badge color="secondary" class="ion-margin-end ion-margin-bottom">
             <ion-icon name="bookmark-outline"></ion-icon>
             <ion-label> {{tarea.sistema}}</ion-label>
           </ion-badge>
