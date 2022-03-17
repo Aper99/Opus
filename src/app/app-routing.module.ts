@@ -50,6 +50,14 @@ const routes: Routes = [
     path: 'topic',
     loadChildren: () => import('./pages/topic/topic.module').then( m => m.TopicPageModule)
   },
+  {
+    path: 'employees',
+    loadChildren: () => import('./pages/employees/employees.module').then( m => m.EmployeesPageModule)
+  },
+  {
+    path: 'employee',
+    loadChildren: () => import('./pages/employee/employee.module').then( m => m.EmployeePageModule)
+  },
 
 
 

@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-back-button slot="start" defaultHref="/home"></ion-back-button>
+    <ion-title>Crear Empleado</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="ion-padding" >
+    <ion-item fill="outline" class="ion-margin-bottom">
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline" class="ion-margin-bottom">
+      <ion-label position="floating">C.I</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline" class="ion-margin-bottom">
+      <ion-label position="floating">Telefono</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline" class="ion-margin-bottom">
+      <ion-label position="floating">Direccion</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-list-header>
+      <h5>Datos de Acceso a la App</h5>
+    </ion-list-header>
+
+    <ion-item fill="outline" class="ion-margin-bottom">
+      <ion-label position="floating">E-mail</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline" class="ion-margin-bottom">
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input type="password"></ion-input>
+    </ion-item>
+
+    <ion-item fill="outline" class="ion-margin-bottom">
+      <ion-label position="floating">Confirmar Contraseña</ion-label>
+      <ion-input type="password"></ion-input>
+    </ion-item>
+
+
+
+  </ion-list>
+
+  <ion-button expand="block" [routerLink]="['/employees']" >Guardar Empleado</ion-button>
+
+</ion-content>
