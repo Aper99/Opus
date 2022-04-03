@@ -20,7 +20,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/clients/clients.module').then( m => m.ClientsPageModule)
   },
   {
-    path: 'client',
+    path: 'client/:id',
     loadChildren: () => import('./pages/client/client.module').then( m => m.ClientPageModule)
   },
   {
@@ -38,7 +38,8 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./components/tab/tab.module').then( m => m.TabPageModule)
-  },  {
+  },
+  {
     path: 'create-route',
     loadChildren: () => import('./pages/create-route/create-route.module').then( m => m.CreateRoutePageModule)
   },

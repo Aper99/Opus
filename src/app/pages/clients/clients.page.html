@@ -19,16 +19,16 @@
     <ion-list-header>
       <h2>Listado de Clientes</h2>
     </ion-list-header>
-    <ion-item *ngFor="let client of clients">
+    <ion-item *ngFor="let client of clients" [routerLink]="'/client/'+client?.cli_codigo">
       <ion-icon name="person-sharp" slot="start"></ion-icon>
       <ion-label>
-        <h2>{{client.cli_nombre}}</h2>
+        <h2>{{client?.cli_nombre}}</h2>
       </ion-label>
     </ion-item>
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="tertiary" [routerLink]="'/client'">
+    <ion-fab-button color="tertiary" [routerLink]="'/client/0'">
       <ion-icon name="add" ></ion-icon>
     </ion-fab-button>
   </ion-fab>

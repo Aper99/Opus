@@ -9,7 +9,7 @@ import { ClienteService } from 'src/app/services/cliente.service';
 export class ClientsPage implements OnInit {
 
 
-  clients =[];
+  clients =null;
 
   constructor(private clienteService: ClienteService) { }
 
@@ -19,7 +19,7 @@ export class ClientsPage implements OnInit {
       if (data.success){
         this.clients = data.clientes;
       }else{
-        this.clients = [];
+        this.clients = null;
       }
 
 
