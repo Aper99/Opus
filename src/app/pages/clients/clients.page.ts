@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
 import { ClienteService } from 'src/app/services/cliente.service';
 
 @Component({
@@ -9,18 +10,32 @@ import { ClienteService } from 'src/app/services/cliente.service';
 export class ClientsPage implements OnInit {
 
 
-  clients =null;
+  clients = null;
 
-  constructor(private clienteService: ClienteService) { }
+  constructor(private clienteService: ClienteService,
+    public loadingController: LoadingController) { }
 
   ngOnInit() {
 
+  }
+
+  ionViewWillEnter(){
+    this.listarClientes();
+  }
+
+  async listarClientes() {
+    const loading = await this.loadingController.create({
+      message: 'Consultando...',
+    });
+    await loading.present();
+
     this.clienteService.list().subscribe(data => {
-      if (data.success){
+      if (data.success) {
         this.clients = data.clientes;
-      }else{
+      } else {
         this.clients = null;
       }
+      loading.dismiss();
 
 
     });

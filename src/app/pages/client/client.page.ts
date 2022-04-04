@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { LoadingController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-client',
@@ -23,12 +24,17 @@ export class ClientPage implements OnInit {
 
   private codigo: string;
 
-  constructor(private router: ActivatedRoute, private clienteService: ClienteService, private fb: FormBuilder) { }
+  constructor(private activatedRoute: ActivatedRoute,
+    private clienteService: ClienteService,
+    private fb: FormBuilder,
+    public loadingController: LoadingController,
+    public toastController: ToastController,
+    private router: Router) { }
 
   ngOnInit() {
 
 
-    this.codigo = this.router.snapshot.params.id;
+    this.codigo = this.activatedRoute.snapshot.params.id;
 
     //caso el codigo sea distinto a 0 hace la consulta a la bd
     if (this.codigo !== '0') {
@@ -48,10 +54,16 @@ export class ClientPage implements OnInit {
     }
   }
 
-  guardarCliente() {
+  async guardarCliente() {
+
+    const loading = await this.loadingController.create({
+      message: 'Guardando...',
+    });
+    await loading.present();
+
     const cliente = this.clienteForm.value;
     const tmpCliente = {
-    cli_codigo : cliente.codigo === '0' ? null : Number(this.codigo),
+    cli_codigo : this.codigo === '0' ? null : Number(this.codigo),
     cli_nombre: cliente.nombre,
     cli_rucci: cliente.ci,
     cli_telefono: cliente.telefono,
@@ -59,7 +71,18 @@ export class ClientPage implements OnInit {
     cli_direccion: cliente.direccion,
     };
 
-    this.clienteService.create(tmpCliente).subscribe(data => console.log(data));
+    this.clienteService.create(tmpCliente).subscribe(async (data: any) => {
+      loading.dismiss();
+      const message = data.success ? 'Cliente guardado con exito' : 'Error al guardar el cliente. Intente de nuevo más tarde';
+      const toast = await this.toastController.create({
+        message,
+        duration: 2000
+      });
+      toast.present();
+
+      this.router.navigate(['/clients']);
+
+    });
   }
 
 
