@@ -29,5 +29,9 @@ export class ClienteService {
     }
   }
 
+  public delete(codigo){
+    return this.http.delete(this.endPointUrl+'/remove/'+codigo);
+  }
+
 
 }

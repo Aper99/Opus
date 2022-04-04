@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { FormBuilder, Validators } from '@angular/forms';
-import { LoadingController, ToastController } from '@ionic/angular';
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-client',
@@ -22,14 +22,15 @@ export class ClientPage implements OnInit {
   });
 
 
-  private codigo: string;
+  public codigo: string;
 
   constructor(private activatedRoute: ActivatedRoute,
     private clienteService: ClienteService,
     private fb: FormBuilder,
     public loadingController: LoadingController,
     public toastController: ToastController,
-    private router: Router) { }
+    private router: Router,
+    public alertController: AlertController) { }
 
   ngOnInit() {
 
@@ -63,12 +64,12 @@ export class ClientPage implements OnInit {
 
     const cliente = this.clienteForm.value;
     const tmpCliente = {
-    cli_codigo : this.codigo === '0' ? null : Number(this.codigo),
-    cli_nombre: cliente.nombre,
-    cli_rucci: cliente.ci,
-    cli_telefono: cliente.telefono,
-    cli_email: cliente.email,
-    cli_direccion: cliente.direccion,
+      cli_codigo: this.codigo === '0' ? null : Number(this.codigo),
+      cli_nombre: cliente.nombre,
+      cli_rucci: cliente.ci,
+      cli_telefono: cliente.telefono,
+      cli_email: cliente.email,
+      cli_direccion: cliente.direccion,
     };
 
     this.clienteService.create(tmpCliente).subscribe(async (data: any) => {
@@ -83,6 +84,51 @@ export class ClientPage implements OnInit {
       this.router.navigate(['/clients']);
 
     });
+  }
+
+  async eliminar() {
+
+    const alert = await this.alertController.create({
+      header: 'Eliminar Cliente',
+      message: '¿Esta Seguro que desea eliminar el cliente?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          id: 'cancel-button',
+        }, {
+          text: 'Eliminar',
+          id: 'confirm-button',
+          handler: () => {
+            this.clienteService.delete(this.codigo).subscribe( async (data: any) => {
+              if(data.success){
+                const toast = await this.toastController.create({
+                  message: 'Eliminado con exito',
+                  duration: 2000
+                });
+                toast.present();
+                this.router.navigate(['/clients']);
+              }else{
+                const error = data.error;
+                if (error === '23503'){
+                  const toast = await this.toastController.create({
+                    message: 'El cliente es actualmente utilizado. No es posible eliminar',
+                    duration: 2000
+                  });
+                  toast.present();
+                }
+              }
+
+            });
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+
+
+
   }
 
 
