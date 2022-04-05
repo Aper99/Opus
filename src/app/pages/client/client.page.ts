@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ClienteService } from 'src/app/services/cliente.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
+import { ClienteService } from 'src/app/services/cliente.service';
+import { RutaService } from 'src/app/services/ruta.service';
 
 @Component({
   selector: 'app-client',
@@ -23,9 +24,11 @@ export class ClientPage implements OnInit {
 
 
   public codigo: string;
+  public rutas: any = null;
 
   constructor(private activatedRoute: ActivatedRoute,
     private clienteService: ClienteService,
+    private rutaService: RutaService,
     private fb: FormBuilder,
     public loadingController: LoadingController,
     public toastController: ToastController,
@@ -34,25 +37,7 @@ export class ClientPage implements OnInit {
 
   ngOnInit() {
 
-
-    this.codigo = this.activatedRoute.snapshot.params.id;
-
-    //caso el codigo sea distinto a 0 hace la consulta a la bd
-    if (this.codigo !== '0') {
-      this.clienteService.getById(this.codigo).subscribe(data => {
-        if (data.success) {
-
-          this.clienteForm.setValue({
-            nombre: data.cliente.cli_nombre,
-            ci: data.cliente.cli_rucci,
-            telefono: data.cliente.cli_telefono,
-            email: data.cliente.cli_email,
-            direccion: data.cliente.cli_direccion,
-            ruta: data.cliente.cli_codrut,
-          });
-        }
-      });
-    }
+    this.obtenerCliente();
   }
 
   async guardarCliente() {
@@ -70,7 +55,9 @@ export class ClientPage implements OnInit {
       cli_telefono: cliente.telefono,
       cli_email: cliente.email,
       cli_direccion: cliente.direccion,
+      cli_codrut: cliente.ruta,
     };
+
 
     this.clienteService.create(tmpCliente).subscribe(async (data: any) => {
       loading.dismiss();
@@ -129,6 +116,38 @@ export class ClientPage implements OnInit {
 
 
 
+  }
+
+  private async obtenerCliente() {
+
+    this.obtenerRutas();
+
+    this.codigo = this.activatedRoute.snapshot.params.id;
+
+    //caso el codigo sea distinto a 0 hace la consulta a la bd
+    if (this.codigo !== '0') {
+      this.clienteService.getById(this.codigo).subscribe( (data) => {
+        if (data.success) {
+
+          this.clienteForm.setValue({
+            nombre: data.cliente.cli_nombre,
+            ci: data.cliente.cli_rucci,
+            telefono: data.cliente.cli_telefono,
+            email: data.cliente.cli_email,
+            direccion: data.cliente.cli_direccion,
+            ruta: data.cliente.cli_codrut,
+          });
+        }
+
+      });
+    }
+
+  }
+
+  private obtenerRutas() {
+    this.rutaService.list().subscribe(data => {
+      this.rutas = data.success ? data.rutas : null;
+    });
   }
 
 

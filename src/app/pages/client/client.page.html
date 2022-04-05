@@ -41,8 +41,10 @@
       </ion-item>
 
       <ion-item fill="outline" class="ion-margin-bottom">
-        <ion-label position="floating">Ruta</ion-label>
-        <ion-input formControlName="ruta"></ion-input>
+        <ion-label position="floating" >Ruta</ion-label>
+        <ion-select formControlName="ruta" >
+          <ion-select-option *ngFor="let ruta of rutas" [value]="ruta.rut_codigo">{{ruta.rut_descripcion}}</ion-select-option>
+        </ion-select>
       </ion-item>
     </ion-list>
 
