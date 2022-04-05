@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RutaService {
 
-  private endPointUrl = 'http://localhost:3000/rutas';
+  private endPointUrl = `${environment.serverUrl}/rutas`;
 
   constructor(private http: HttpClient) { }
 

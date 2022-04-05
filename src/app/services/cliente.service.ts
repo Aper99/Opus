@@ -2,13 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClienteService {
 
-  private endPointUrl = 'http://localhost:3000/clientes';
+
+
+  private endPointUrl = `${environment.serverUrl}/clientes`;
 
   constructor(private http: HttpClient) { }
 
