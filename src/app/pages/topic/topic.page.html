@@ -4,6 +4,11 @@
       <ion-back-button slot="start" defaultHref="/topics"></ion-back-button>
     </ion-buttons>
     <ion-title>Crear Sistema</ion-title>
+    <ion-buttons slot="end">
+      <ion-button *ngIf="codigo !=='0'" (click)="eliminar()">
+        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

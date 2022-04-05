@@ -29,7 +29,7 @@ export class SistemaService {
     }
   }
 
-  // public delete(codigo){
-  //   return this.http.delete(this.endPointUrl+'/remove/'+codigo);
-  // }
+  public delete(codigo){
+    return this.http.delete(this.endPointUrl+'/remove/'+codigo);
+  }
 }

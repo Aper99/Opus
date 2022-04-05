@@ -57,6 +57,51 @@ export class TopicPage implements OnInit {
     });
   };
 
+  async eliminar() {
+
+    const alert = await this.alertController.create({
+      header: 'Eliminar Sistema',
+      message: '¿Esta Seguro que desea eliminar el sistema?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          id: 'cancel-button',
+        }, {
+          text: 'Eliminar',
+          id: 'confirm-button',
+          handler: () => {
+            this.sistemaService.delete(this.codigo).subscribe( async (data: any) => {
+              if(data.success){
+                const toast = await this.toastController.create({
+                  message: 'Eliminado con exito',
+                  duration: 2000
+                });
+                toast.present();
+                this.router.navigate(['/topics']);
+              }else{
+                const error = data.error;
+                if (error === '23503'){
+                  const toast = await this.toastController.create({
+                    message: 'El Sistema es actualmente utilizado. No es posible eliminar',
+                    duration: 2000
+                  });
+                  toast.present();
+                }
+              }
+
+            });
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+
+
+
+  }
+
   private async obtenerSistema() {
 
     this.codigo = this.activatedRoute.snapshot.params.id;
