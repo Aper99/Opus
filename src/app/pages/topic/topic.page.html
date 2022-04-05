@@ -1,24 +1,22 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-back-button slot="start" defaultHref="/home"></ion-back-button>
+    <ion-buttons slot="start">
+      <ion-back-button slot="start" defaultHref="/topics"></ion-back-button>
+    </ion-buttons>
     <ion-title>Crear Sistema</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list class="ion-padding" >
-    <ion-item fill="outline" class="ion-margin-bottom">
-      <ion-label position="floating">Codigo</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
+  <form [formGroup]="sistemaForm" (ngSubmit)="guardarSistema()">
+    <ion-list class="ion-padding">
+      <ion-item fill="outline" class="ion-margin-bottom">
+        <ion-label position="floating">Descripcion</ion-label>
+        <ion-input formControlName="descripcion"></ion-input>
+      </ion-item>
+    </ion-list>
 
-    <ion-item fill="outline" class="ion-margin-bottom">
-      <ion-label position="floating">Descripcion</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
-
-  </ion-list>
-
-  <ion-button expand="block" [routerLink]="['/topics']" >Guardar Sistema</ion-button>
-
+    <ion-button expand="block" type="submit" [disabled]="!sistemaForm.valid"
+      >Guardar Sistema</ion-button>
+  </form>
 </ion-content>
