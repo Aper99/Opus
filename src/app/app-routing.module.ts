@@ -48,7 +48,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/topics/topics.module').then( m => m.TopicsPageModule)
   },
   {
-    path: 'topic',
+    path: 'topic/:id',
     loadChildren: () => import('./pages/topic/topic.module').then( m => m.TopicPageModule)
   },
   {

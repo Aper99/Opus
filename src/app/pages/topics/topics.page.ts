@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
+import { SistemaService } from 'src/app/services/sistema.service';
 
 @Component({
   selector: 'app-topics',
@@ -7,11 +9,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopicsPage implements OnInit {
 
-  topics = [1,2,3,4,5,6];
+  topics = null;
 
-  constructor() { }
+  constructor(private sistemaService: SistemaService,
+    public loadingController: LoadingController) { }
 
   ngOnInit() {
+
   }
 
+  ionViewWillEnter(){
+    this.listarSistemas();
+  }
+
+
+  private async listarSistemas() {
+
+    const loading = await this.loadingController.create({
+      message: 'Consultando...',
+    });
+    await loading.present();
+
+
+    this.sistemaService.list().subscribe(async (data) => {
+      if (data.success) {
+        this.topics = data.sistemas;
+      }
+      await loading.dismiss();
+    });
+  }
 }

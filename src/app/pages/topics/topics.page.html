@@ -19,16 +19,16 @@
     <ion-list-header>
       <h2>Listado de Sistemas</h2>
     </ion-list-header>
-    <ion-item *ngFor="let topic of topics">
+    <ion-item *ngFor="let topic of topics" [routerLink]="'/topic/'+topic.sis_codigo">
       <ion-icon name="bookmark" slot="start"></ion-icon>
       <ion-label>
-        <h2>Sistema {{topic}}</h2>
+        <h2>{{topic?.sis_descripcion}}</h2>
       </ion-label>
     </ion-item>
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="tertiary" [routerLink]="'/topic'">
+    <ion-fab-button color="tertiary" [routerLink]="'/topic/0'">
       <ion-icon name="add" ></ion-icon>
     </ion-fab-button>
   </ion-fab>
