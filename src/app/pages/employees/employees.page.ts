@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
+import { EmpleadoService } from 'src/app/services/empleado.service';
 
 @Component({
   selector: 'app-employees',
@@ -7,11 +9,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeesPage implements OnInit {
 
-  employees = [1,2,3,4,5,6,7,8,9,10];
+  employees = null;
 
-  constructor() { }
+  constructor(private empleadoService: EmpleadoService,
+    public loadingController: LoadingController) { }
 
   ngOnInit() {
+
+  }
+
+  ionViewWillEnter(){
+    this.listarEmpleados();
+  }
+
+
+  private async listarEmpleados() {
+
+    const loading = await this.loadingController.create({
+      message: 'Consultando...',
+    });
+    await loading.present();
+
+
+    this.empleadoService.list().subscribe(async (data) => {
+      if (data.success) {
+        this.employees = data.empleados;
+      }
+      await loading.dismiss();
+    });
   }
 
 }
