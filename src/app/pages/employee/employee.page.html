@@ -1,55 +1,55 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-back-button slot="start" defaultHref="/home"></ion-back-button>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/employees"></ion-back-button>
+    </ion-buttons>
     <ion-title>Crear Empleado</ion-title>
+    <ion-buttons slot="end">
+      <ion-button *ngIf="codigo !=='0'" (click)="eliminar()">
+        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list class="ion-padding" >
-    <ion-item fill="outline" class="ion-margin-bottom">
-      <ion-label position="floating">Nombre</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
+  <form [formGroup]="empleadoForm" (ngSubmit)="guardarEmpleado()">
+    <ion-list class="ion-padding">
+      <ion-item fill="outline" class="ion-margin-bottom">
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input formControlName="nombre"></ion-input>
+      </ion-item>
 
-    <ion-item fill="outline" class="ion-margin-bottom">
-      <ion-label position="floating">C.I</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
+      <ion-item fill="outline" class="ion-margin-bottom">
+        <ion-label position="floating">C.I</ion-label>
+        <ion-input formControlName="ci"></ion-input>
+      </ion-item>
 
-    <ion-item fill="outline" class="ion-margin-bottom">
-      <ion-label position="floating">Telefono</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
+      <ion-item fill="outline" class="ion-margin-bottom">
+        <ion-label position="floating">Telefono</ion-label>
+        <ion-input formControlName="telefono"></ion-input>
+      </ion-item>
 
-    <ion-item fill="outline" class="ion-margin-bottom">
-      <ion-label position="floating">Direccion</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
+      <ion-item fill="outline" class="ion-margin-bottom">
+        <ion-label position="floating">Direccion</ion-label>
+        <ion-input formControlName="direccion"></ion-input>
+      </ion-item>
 
-    <ion-list-header>
-      <h5>Datos de Acceso a la App</h5>
-    </ion-list-header>
+      <ion-list-header>
+        <h5>Datos de Acceso a la App</h5>
+      </ion-list-header>
 
-    <ion-item fill="outline" class="ion-margin-bottom">
-      <ion-label position="floating">E-mail</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
+      <ion-item fill="outline" class="ion-margin-bottom">
+        <ion-label position="floating">E-mail</ion-label>
+        <ion-input formControlName="email"></ion-input>
+      </ion-item>
 
-    <ion-item fill="outline" class="ion-margin-bottom">
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="password"></ion-input>
-    </ion-item>
+      <ion-item fill="outline" class="ion-margin-bottom">
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+    </ion-list>
 
-    <ion-item fill="outline" class="ion-margin-bottom">
-      <ion-label position="floating">Confirmar Contraseña</ion-label>
-      <ion-input type="password"></ion-input>
-    </ion-item>
-
-
-
-  </ion-list>
-
-  <ion-button expand="block" [routerLink]="['/employees']" >Guardar Empleado</ion-button>
-
+    <ion-button expand="block" type="submit" [disabled]="!empleadoForm.valid">Guardar Empleado</ion-button>
+  </form>
 </ion-content>
