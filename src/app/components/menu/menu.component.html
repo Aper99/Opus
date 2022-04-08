@@ -3,56 +3,57 @@
     <ion-toolbar translucent color="tertiary">
       <ion-title>Menu</ion-title>
     </ion-toolbar>
-    <ion-item lines="none">
-      <ion-avatar slot="start">
-        <img
-              src="https://www.slotcharter.net/wp-content/uploads/2020/02/no-avatar.png"
-            />
-      </ion-avatar>
-      <ion-label>
-        <h2>Empleado 1</h2>
-        <p>Empresa Falsa</p>
-      </ion-label>
-    </ion-item>
+    <ion-menu-toggle autoHide="false">
+      <ion-item lines="none">
+        <ion-avatar slot="start">
+          <img
+            src="https://www.slotcharter.net/wp-content/uploads/2020/02/no-avatar.png"
+          />
+        </ion-avatar>
+        <ion-label [routerLink]="'/user'">
+          <h2>Usuario 1</h2>
+          <p>Empresa Falsa</p>
+        </ion-label>
+      </ion-item>
+    </ion-menu-toggle>
   </ion-header>
   <ion-content>
     <ion-list>
       <ion-menu-toggle autoHide="false">
-      <ion-item [routerLink]="'/home/tasks'" routerLinkActive="selected">
-        <ion-icon name="reader" slot="start"></ion-icon>
-        <ion-label>Tareas</ion-label>
-      </ion-item>
+        <ion-item [routerLink]="'/home/tasks'" routerLinkActive="selected">
+          <ion-icon name="reader" slot="start"></ion-icon>
+          <ion-label>Tareas</ion-label>
+        </ion-item>
 
-      <ion-item [routerLink]="'/home/routes'" routerLinkActive="selected">
-        <ion-icon name="navigate" slot="start"></ion-icon>
-        <ion-label>Rutas</ion-label>
-      </ion-item>
-    
-      <ion-item [routerLink]="'/clients'" routerLinkActive="selected">
-        <ion-icon name="storefront" slot="start"></ion-icon>
-        <ion-label>Clientes</ion-label>
-      </ion-item>
+        <ion-item [routerLink]="'/home/routes'" routerLinkActive="selected">
+          <ion-icon name="navigate" slot="start"></ion-icon>
+          <ion-label>Rutas</ion-label>
+        </ion-item>
 
-      <ion-item [routerLink]="'/topics'" routerLinkActive="selected">
-        <ion-icon name="bookmark" slot="start"></ion-icon>
-        <ion-label>Sistemas</ion-label>
-      </ion-item>
+        <ion-item [routerLink]="'/clients'" routerLinkActive="selected">
+          <ion-icon name="storefront" slot="start"></ion-icon>
+          <ion-label>Clientes</ion-label>
+        </ion-item>
 
-      <ion-item [routerLink]="'/employees'" routerLinkActive="selected">
-        <ion-icon name="people" slot="start"></ion-icon>
-        <ion-label>Empleados</ion-label>
-      </ion-item>
+        <ion-item [routerLink]="'/topics'" routerLinkActive="selected">
+          <ion-icon name="bookmark" slot="start"></ion-icon>
+          <ion-label>Sistemas</ion-label>
+        </ion-item>
 
-      <ion-item [routerLink]="'/settings'" routerLinkActive="selected">
-        <ion-icon name="settings" slot="start"></ion-icon>
-        <ion-label>Configuraciones</ion-label>
-      </ion-item>
-      <ion-item [routerLink]="'/login'" routerLinkActive="selected">
-        <ion-icon name="log-out" slot="start"></ion-icon>
-        <ion-label>Cerrar Sesión</ion-label>
-      </ion-item>
-    </ion-menu-toggle>
-     
+        <ion-item [routerLink]="'/employees'" routerLinkActive="selected">
+          <ion-icon name="people" slot="start"></ion-icon>
+          <ion-label>Empleados</ion-label>
+        </ion-item>
+
+        <ion-item [routerLink]="'/settings'" routerLinkActive="selected">
+          <ion-icon name="settings" slot="start"></ion-icon>
+          <ion-label>Configuraciones</ion-label>
+        </ion-item>
+        <ion-item [routerLink]="'/login'" routerLinkActive="selected">
+          <ion-icon name="log-out" slot="start"></ion-icon>
+          <ion-label>Cerrar Sesión</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
     </ion-list>
   </ion-content>
 </ion-menu>

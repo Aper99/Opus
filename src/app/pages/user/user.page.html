@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar [color]="'primary'">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Usuario</ion-title>
+    <ion-buttons slot="end"> </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <img
+        src="https://www.slotcharter.net/wp-content/uploads/2020/02/no-avatar.png"
+      />
+      <ion-card-title>Usuario 1</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+          <h5>Datos de Acceso a la App</h5>
+        <ion-item fill="outline" class="ion-margin-bottom">
+          <ion-label position="floating">E-mail</ion-label>
+          <ion-input></ion-input>
+        </ion-item>
+
+        <ion-item fill="outline" class="ion-margin-bottom">
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input type="password" ></ion-input>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+
+    <ion-button expand="block" >Guardar Usuario</ion-button>
+
+  </ion-card>
+</ion-content>
