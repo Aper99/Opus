@@ -58,7 +58,11 @@ const routes: Routes = [
   {
     path: 'employee/:id',
     loadChildren: () => import('./pages/employee/employee.module').then( m => m.EmployeePageModule)
+  },  {
+    path: 'settings',
+    loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
   },
+
 
 
 
