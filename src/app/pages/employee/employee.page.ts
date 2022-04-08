@@ -17,8 +17,7 @@ export class EmployeePage implements OnInit {
     ci: [''],
     telefono: [''],
     direccion: [''],
-    email: ['', [Validators.email,Validators.required]],
-    password: ['', Validators.required],
+    usuario: ['', Validators.required],
   });
 
 
@@ -51,8 +50,7 @@ export class EmployeePage implements OnInit {
       emp_ci: empleado.ci,
       emp_telefono: empleado.telefono,
       emp_direccion: empleado.direccion,
-      emp_email: empleado.email,
-      emp_password: empleado.password,
+      emp_codusu: empleado.usuario,
     };
 
 
@@ -130,8 +128,7 @@ export class EmployeePage implements OnInit {
             ci: data.empleado.emp_ci,
             telefono: data.empleado.emp_telefono,
             direccion: data.empleado.emp_direccion,
-            email: data.empleado.emp_email,
-            password: data.empleado.emp_password,
+            usuario: data.empleado.emp_codusu,
           });
         }
 
