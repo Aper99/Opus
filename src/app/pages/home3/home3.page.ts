@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
 import { TareaService } from 'src/app/services/tarea.service';
