@@ -24,7 +24,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/client/client.module').then( m => m.ClientPageModule)
   },
   {
-    path: 'task',
+    path: 'task/:id',
     loadChildren: () => import('./pages/task/task.module').then( m => m.TaskPageModule)
   },
   {
@@ -58,7 +58,8 @@ const routes: Routes = [
   {
     path: 'employee/:id',
     loadChildren: () => import('./pages/employee/employee.module').then( m => m.EmployeePageModule)
-  },  {
+  },
+  {
     path: 'settings',
     loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
   },

@@ -80,9 +80,9 @@ export class Home3Page implements OnInit {
 
   colorEstado(estado: string): string{
   switch (estado) {
-    case 'Activo':
+    case 'A':
       return 'success';
-    case 'Finalizado':
+    case 'F':
         return 'danger';
     default:
       return 'light';
