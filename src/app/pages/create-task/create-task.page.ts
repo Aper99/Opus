@@ -22,7 +22,7 @@ export class CreateTaskPage implements OnInit {
     sistema: ['', Validators.required],
     empleado: ['', Validators.required],
     descripcion: ['', Validators.required],
-    estado : ['E']
+    estado : ['I']
   });
 
 
