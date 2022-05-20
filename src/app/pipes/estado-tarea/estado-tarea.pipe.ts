@@ -11,8 +11,8 @@ export class EstadoTareaPipe implements PipeTransform {
         return 'Activo';
       case 'F':
           return 'Finalizado';
-      case 'P':
-          return 'Pausado';
+      case 'I':
+          return 'Inactivo';
       default:
         return 'sin estado';
     }
