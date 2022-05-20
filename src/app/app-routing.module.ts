@@ -12,7 +12,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'create-task',
+    path: 'create-task/:id',
     loadChildren: () => import('./pages/create-task/create-task.module').then( m => m.CreateTaskPageModule)
   },
   {

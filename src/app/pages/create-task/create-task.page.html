@@ -6,40 +6,41 @@
 </ion-header>
 
 <ion-content>
+  <form [formGroup]="tareaForm" (ngSubmit)="guardarTarea()">
   <ion-list class="ion-padding" >
     <ion-item fill="outline" class="ion-margin-bottom" >
       <ion-icon name="calendar-clear-outline" slot="start"></ion-icon>
       <ion-label position="floating">Fecha</ion-label>
-      <ion-input type="datetime-local" placeholder="Ingrese una fecha"></ion-input>
+      <ion-input formControlName="fecha" type="datetime-local" placeholder="Ingrese una fecha"></ion-input>
     </ion-item>
-    <ion-item fill="outline" class="ion-margin-bottom">
+      <ion-item fill="outline" class="ion-margin-bottom">
       <ion-icon name="storefront-outline" slot="start"></ion-icon>
       <ion-label position="floating">Cliente</ion-label>
-      <ion-select value="brown" >
-        <ion-select-option value="brown">Empresa S.A</ion-select-option>
+      <ion-select formControlName="cliente" >
+        <ion-select-option *ngFor="let cliente of clientes" [value]="cliente.cli_codigo">{{cliente.cli_nombre}}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item fill="outline" class="ion-margin-bottom">
       <ion-icon name="bookmark-outline" slot="start"></ion-icon>
       <ion-label position="floating" >Sistema</ion-label>
-      <ion-select value="brown" >
-        <ion-select-option value="brown">Sistema 1</ion-select-option>
+      <ion-select formControlName="sistema" >
+        <ion-select-option *ngFor="let sistema of sistemas" [value]="sistema.sis_codigo">{{sistema.sis_descripcion}}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item fill="outline" class="ion-margin-bottom">
       <ion-icon name="person-outline" slot="start"></ion-icon>
       <ion-label position="floating" >Responsable</ion-label>
-      <ion-select value="brown" >
-        <ion-select-option value="brown">Empleado 1</ion-select-option>
+      <ion-select formControlName="empleado" >
+        <ion-select-option *ngFor="let empleado of empleados" [value]="empleado.emp_codigo">{{empleado.emp_nombre}}</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item fill="outline" class="ion-margin-bottom">
       <ion-label position="floating" >Descripción</ion-label>
-      <ion-textarea autoGrow="true" spellcheck="true"></ion-textarea>
+      <ion-textarea formControlName="descripcion"autoGrow="true" spellcheck="true"></ion-textarea>
     </ion-item>
-
+    
   </ion-list>
 
-  <ion-button expand="block" [routerLink]="['/home']" >Guardar Tarea</ion-button>
-
+  <ion-button ion-button expand="block" type="submit" [disabled]="!tareaForm.valid">Guardar Tarea</ion-button>
+</form>
 </ion-content>
