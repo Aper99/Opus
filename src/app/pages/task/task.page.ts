@@ -74,7 +74,6 @@ console.log(tmpTarea);
 
   async obtenerTarea() {
 
-
     this.codigo = this.activatedRoute.snapshot.params.id;
 
     //caso el codigo sea distinto a 0 hace la consulta a la bd
