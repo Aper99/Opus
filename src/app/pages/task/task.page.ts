@@ -71,6 +71,51 @@ export class TaskPage implements OnInit {
     });
   }
 
+  async eliminar() {
+
+    const alert = await this.alertController.create({
+      header: 'Eliminar Tarea',
+      message: '¿Esta Seguro que desea eliminar la tarea?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          id: 'cancel-button',
+        }, {
+          text: 'Eliminar',
+          id: 'confirm-button',
+          handler: () => {
+            this.tareaService.delete(this.codigo).subscribe( async (data: any) => {
+              if(data.success){
+                const toast = await this.toastController.create({
+                  message: 'Eliminado con exito',
+                  duration: 2000
+                });
+                toast.present();
+                this.router.navigate(['/home/tasks']);
+              }else{
+                const error = data.error;
+                if (error === '23503'){
+                  const toast = await this.toastController.create({
+                    message: 'La tarea es actualmente utilizado. No es posible eliminar',
+                    duration: 2000
+                  });
+                  toast.present();
+                }
+              }
+
+            });
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+
+
+
+  }
+
   async finalizarTarea() {
     const loading = await this.loadingController.create({
       message: 'Guardando...',

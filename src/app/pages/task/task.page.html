@@ -1,69 +1,94 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-back-button slot="start" defaultHref="/home/tasks"></ion-back-button>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home/tasks"></ion-back-button>
+    </ion-buttons>
     <ion-title>Tarea #{{tarea?.tra_numero}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button *ngIf="codigo !=='0'" (click)="eliminar()">
+        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <form [formGroup]="tareaForm" (ngSubmit)="finalizarTarea()">
-  <ion-card>
-    <img src="assets\map_pin.PNG" />
-    <ion-card-header>
-      <ion-item class="ion-margin-bottom">
-        <ion-label>En progreso</ion-label>
-        <ion-toggle slot="end" formControlName="estado"></ion-toggle>
-      </ion-item>
-      <ion-badge [color]="colorEstado(tarea?.tra_estado)">
-        {{tarea?.tra_estado | estadoTarea}}
-      </ion-badge>
+    <ion-card>
+      <img src="assets\map_pin.PNG" />
+      <ion-card-header>
+        <ion-item class="ion-margin-bottom">
+          <ion-label>En progreso</ion-label>
+          <ion-toggle slot="end" formControlName="estado"></ion-toggle>
+        </ion-item>
+        <ion-badge [color]="colorEstado(tarea?.tra_estado)">
+          {{tarea?.tra_estado | estadoTarea}}
+        </ion-badge>
 
-      <ion-card-subtitle
-        style="display: flex; flex-wrap: wrap; align-items: flex-start"
-      >
-        <ion-badge color="secondary" class="ion-margin-end">
-          <ion-icon name="calendar-clear-outline"></ion-icon>
-          <ion-label>{{tarea?.tra_fecha | date:'dd-MM-yyyy HH:mm:ss'}}</ion-label>
-        </ion-badge>
-        <ion-badge color="secondary" class="ion-margin-end ion-margin-bottom">
-          <ion-icon name="pin"></ion-icon>
-          <ion-label>{{tarea?.Cliente.cli_nombre}}</ion-label>
-        </ion-badge>
-        <ion-badge
-          color="secondary"
-          [hidden]="!tarea?.Cliente?.Ruta"
-          class="ion-margin-end"
+        <ion-card-subtitle
+          style="display: flex; flex-wrap: wrap; align-items: flex-start"
         >
-          <ion-icon name="navigate-outline"></ion-icon>
-          <ion-label> {{tarea?.Cliente.Ruta.rut_descripcion}}</ion-label>
-        </ion-badge>
-        <ion-badge color="secondary" class="ion-margin-end">
-          <ion-icon name="bookmark-outline"></ion-icon>
-          <ion-label> {{tarea?.Sistema.sis_descripcion}}</ion-label>
-        </ion-badge>
-        <div style="flex: 1 1 auto"></div>
-      </ion-card-subtitle>
-    </ion-card-header>
+          <ion-badge color="secondary" class="ion-margin-end">
+            <ion-icon name="calendar-clear-outline"></ion-icon>
+            <ion-label
+              >{{tarea?.tra_fecha | date:'dd-MM-yyyy HH:mm:ss'}}</ion-label
+            >
+          </ion-badge>
+          <ion-badge color="secondary" class="ion-margin-end ion-margin-bottom">
+            <ion-icon name="pin"></ion-icon>
+            <ion-label>{{tarea?.Cliente.cli_nombre}}</ion-label>
+          </ion-badge>
+          <ion-badge
+            color="secondary"
+            [hidden]="!tarea?.Cliente?.Ruta"
+            class="ion-margin-end"
+          >
+            <ion-icon name="navigate-outline"></ion-icon>
+            <ion-label> {{tarea?.Cliente.Ruta.rut_descripcion}}</ion-label>
+          </ion-badge>
+          <ion-badge color="secondary" class="ion-margin-end">
+            <ion-icon name="bookmark-outline"></ion-icon>
+            <ion-label> {{tarea?.Sistema.sis_descripcion}}</ion-label>
+          </ion-badge>
+          <div style="flex: 1 1 auto"></div>
+        </ion-card-subtitle>
+      </ion-card-header>
 
-    <ion-card-content>
-      <p>{{tarea?.tra_descripcion}}</p>
+      <ion-card-content>
+        <p>{{tarea?.tra_descripcion}}</p>
 
-      <ion-item fill="outline" class="ion-margin-top ion-margin-bottom">
-        <ion-label position="floating">Observación</ion-label>
-        <ion-textarea autoGrow="true" spellcheck="true" formControlName="obs"></ion-textarea>
-      </ion-item>
+        <ion-item fill="outline" class="ion-margin-top ion-margin-bottom">
+          <ion-label position="floating">Observación</ion-label>
+          <ion-textarea
+            autoGrow="true"
+            spellcheck="true"
+            formControlName="obs"
+          ></ion-textarea>
+        </ion-item>
 
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <ion-button color="secondary"size="small" type="submit" [disabled]="!(tareaForm.valid && tarea?.tra_estado !=='F')">Finalizar</ion-button>
-          </ion-col>
-          <ion-col>
-            <ion-button color="primary" size="small"   (click)='actualizarTarea()' [disabled]="!(tareaForm.valid && tarea?.tra_estado !=='F')">Actualizar</ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-button
+                color="secondary"
+                size="small"
+                type="submit"
+                [disabled]="!(tareaForm.valid && tarea?.tra_estado !=='F')"
+                >Finalizar</ion-button
+              >
+            </ion-col>
+            <ion-col>
+              <ion-button
+                color="primary"
+                size="small"
+                (click)="actualizarTarea()"
+                [disabled]="!(tareaForm.valid && tarea?.tra_estado !=='F')"
+                >Actualizar</ion-button
+              >
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
   </form>
 </ion-content>
