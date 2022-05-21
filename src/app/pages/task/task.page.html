@@ -1,12 +1,12 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-back-button slot="start" defaultHref="/home"></ion-back-button>
+    <ion-back-button slot="start" defaultHref="/home/tasks"></ion-back-button>
     <ion-title>Tarea #{{tarea?.tra_numero}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="tareaForm" (ngSubmit)="null">
+  <form [formGroup]="tareaForm" (ngSubmit)="finalizarTarea()">
   <ion-card>
     <img src="assets\map_pin.PNG" />
     <ion-card-header>
@@ -56,7 +56,7 @@
       <ion-grid>
         <ion-row>
           <ion-col>
-            <ion-button size="small">Finalizar</ion-button>
+            <ion-button size="small" type="submit" [disabled]="!tareaForm.valid">Finalizar</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

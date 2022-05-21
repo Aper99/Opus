@@ -1,6 +1,8 @@
 /* eslint-disable max-len */
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
+import { Subscription } from 'rxjs';
 import { TareaService } from 'src/app/services/tarea.service';
 
 @Component({
@@ -48,17 +50,31 @@ export class Home3Page implements OnInit {
   // ];
 
   tareas = null;
+  subscription: Subscription;
 
   constructor(private tareaService: TareaService,
+    private router: Router,
     public loadingController: LoadingController) { }
 
-  ngOnInit() {
+  public async ngOnInit(): Promise<void> {
+    await this.onEnter();
 
+    this.subscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd && event.url === '/home/tasks') {
+        this.onEnter();
+      }
+    });
   }
 
-  ionViewWillEnter(){
+  public async onEnter(): Promise<void> {
     this.listarTareas();
   }
+
+  // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
+  public ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
 
   async listarTareas() {
     const loading = await this.loadingController.create({
@@ -78,16 +94,16 @@ export class Home3Page implements OnInit {
     });
   }
 
-  colorEstado(estado: string): string{
-  switch (estado) {
-    case 'A':
-      return 'success';
-    case 'F':
+  colorEstado(estado: string): string {
+    switch (estado) {
+      case 'A':
+        return 'success';
+      case 'F':
         return 'danger';
-    default:
-      return 'light';
+      default:
+        return 'light';
+    }
   }
-}
 }
 
 

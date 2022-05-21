@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -43,6 +44,34 @@ export class TaskPage implements OnInit {
     this.obtenerTarea();
   }
 
+  async finalizarTarea() {
+    const loading = await this.loadingController.create({
+      message: 'Guardando...',
+    });
+    await loading.present();
+
+    const tarea = this.tareaForm.value;
+    const tmpTarea = {
+      tra_numero: this.codigo === '0' ? null : Number(this.codigo),
+      tra_estado: 'F',
+      tra_obs: tarea.obs,
+    };
+
+console.log(tmpTarea);
+    this.tareaService.create(tmpTarea).subscribe(async (data: any) => {
+      loading.dismiss();
+      const message = data.success ? 'Tarea actualizada con exito' : 'Error al guardar la Tarea. Intente de nuevo más tarde';
+      const toast = await this.toastController.create({
+        message,
+        duration: 2000
+      });
+      toast.present();
+
+      this.router.navigate(['/home/tasks']);
+
+    });
+  }
+
   async obtenerTarea() {
 
 
@@ -50,15 +79,15 @@ export class TaskPage implements OnInit {
 
     //caso el codigo sea distinto a 0 hace la consulta a la bd
     if (this.codigo !== '0') {
-      this.tareaService.getById(this.codigo).subscribe( (data) => {
+      this.tareaService.getById(this.codigo).subscribe((data) => {
         if (data.success) {
           this.tarea = data.tarea;
 
           this.tareaForm.setValue({
-            estado : data.tarea.tra_estado === 'A' ,
+            estado: data.tarea.tra_estado === 'A',
             obs: data.tarea.tra_obs,
           });
-        }else{
+        } else {
           this.tarea = null;
         }
 
@@ -67,12 +96,12 @@ export class TaskPage implements OnInit {
 
   }
 
-  colorEstado(estado: string): string{
+  colorEstado(estado: string): string {
     switch (estado) {
       case 'A':
         return 'success';
       case 'F':
-          return 'danger';
+        return 'danger';
       default:
         return 'light';
     }
