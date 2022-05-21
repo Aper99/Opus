@@ -44,6 +44,33 @@ export class TaskPage implements OnInit {
     this.obtenerTarea();
   }
 
+  async actualizarTarea() {
+    const loading = await this.loadingController.create({
+      message: 'Guardando...',
+    });
+    await loading.present();
+
+    const tarea = this.tareaForm.value;
+    const tmpTarea = {
+      tra_numero: this.codigo === '0' ? null : Number(this.codigo),
+      tra_estado: tarea.estado ? 'A' : 'I',
+      tra_obs: tarea.obs,
+    };
+
+    this.tareaService.create(tmpTarea).subscribe(async (data: any) => {
+      loading.dismiss();
+      const message = data.success ? 'Tarea actualizada con exito' : 'Error al guardar la Tarea. Intente de nuevo más tarde';
+      const toast = await this.toastController.create({
+        message,
+        duration: 2000
+      });
+      toast.present();
+
+      this.router.navigate(['/home/tasks']);
+
+    });
+  }
+
   async finalizarTarea() {
     const loading = await this.loadingController.create({
       message: 'Guardando...',

@@ -56,7 +56,10 @@
       <ion-grid>
         <ion-row>
           <ion-col>
-            <ion-button size="small" type="submit" [disabled]="!(tareaForm.valid && tarea?.tra_estado !=='F')">Finalizar</ion-button>
+            <ion-button color="secondary"size="small" type="submit" [disabled]="!(tareaForm.valid && tarea?.tra_estado !=='F')">Finalizar</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button color="primary" size="small"   (click)='actualizarTarea()' [disabled]="!(tareaForm.valid && tarea?.tra_estado !=='F')">Actualizar</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>
