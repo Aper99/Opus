@@ -18,7 +18,6 @@ export class TareaService {
     if (estado){
       oParams =oParams.set('estado',estado);
     }
-    console.log(oParams);
 
     return this.http.get(this.endPointUrl,{params: oParams});
   }
