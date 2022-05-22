@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -13,8 +13,14 @@ export class TareaService {
   constructor(private http: HttpClient) { }
 
 
-  public list(): Observable<any>{
-    return this.http.get(this.endPointUrl);
+  public list(estado?: string): Observable<any>{
+    let oParams = new HttpParams();
+    if (estado){
+      oParams =oParams.set('estado',estado);
+    }
+    console.log(oParams);
+
+    return this.http.get(this.endPointUrl,{params: oParams});
   }
 
   public getById( codigo: string): Observable<any>{

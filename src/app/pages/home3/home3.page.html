@@ -11,14 +11,14 @@
     </ion-buttons>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-segment value="all">
+    <ion-segment [(ngModel)]="estado" (ionChange)="listarTareas()">
       <ion-segment-button value="all">
         <ion-label>Todos</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="pedientes">
+      <ion-segment-button value="A">
         <ion-label>Activos</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="cerrados">
+      <ion-segment-button value="F">
         <ion-label>Finalizados</ion-label>
       </ion-segment-button>
     </ion-segment>
