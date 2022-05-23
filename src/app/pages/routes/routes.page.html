@@ -23,6 +23,9 @@
           <ion-item slot="header">
             <ion-label>{{ruta.rut_descripcion}}</ion-label>
             <!--<ion-badge slot="end">30</ion-badge>-->
+            <ion-button slot="end" [routerLink]="'/create-route/'+ruta.rut_codigo">
+              <ion-icon slot="icon-only" name="create"></ion-icon>
+            </ion-button>
           </ion-item>
       
           <ion-list slot="content">
