@@ -17,19 +17,23 @@ export class RutaService {
     return this.http.get(this.endPointUrl);
   }
 
-  // public getById( codigo: string): Observable<any>{
-  //   return this.http.get(this.endPointUrl+'/find/'+codigo);
-  // }
+  public listGroup(): Observable<any>{
+    return this.http.get(this.endPointUrl+'/group');
+  }
 
-  // public create(cliente: any){
-  //   if (cliente.cli_codigo){
-  //     return this.http.put(this.endPointUrl+'/update',cliente); //actualizacion
-  //   }else{
-  //     return this.http.post(this.endPointUrl+'/create',cliente); //creacion - nuevo
-  //   }
-  // }
+  public getById( codigo: string): Observable<any>{
+    return this.http.get(this.endPointUrl+'/find/'+codigo);
+  }
 
-  // public delete(codigo){
-  //   return this.http.delete(this.endPointUrl+'/remove/'+codigo);
-  // }
+  public create(ruta: any){
+    if (ruta.rut_codigo){
+      return this.http.put(this.endPointUrl+'/update',ruta); //actualizacion
+    }else{
+      return this.http.post(this.endPointUrl+'/create',ruta); //creacion - nuevo
+    }
+  }
+
+  public delete(codigo){
+    return this.http.delete(this.endPointUrl+'/remove/'+codigo);
+  }
 }

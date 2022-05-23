@@ -21,14 +21,14 @@
       <ion-accordion-group>
         <ion-accordion value="rutas">
           <ion-item slot="header">
-            <ion-label>{{ruta.nombre}}</ion-label>
-            <ion-badge slot="end">30</ion-badge>
+            <ion-label>{{ruta.rut_descripcion}}</ion-label>
+            <!--<ion-badge slot="end">30</ion-badge>-->
           </ion-item>
       
           <ion-list slot="content">
-            <ion-item *ngFor="let cliente of ruta.clientes">
-              <ion-label>{{cliente.nombre}}</ion-label>
-              <ion-badge slot="end">10</ion-badge>
+            <ion-item *ngFor="let cliente of ruta.Clientes">
+              <ion-label>{{cliente.cli_nombre}}</ion-label>
+              <!--<ion-badge slot="end">10</ion-badge>-->
             </ion-item>
   
           </ion-list>
