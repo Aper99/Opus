@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
+import { Subscription } from 'rxjs';
 import { RutaService } from 'src/app/services/ruta.service';
 
 @Component({
@@ -9,32 +11,34 @@ import { RutaService } from 'src/app/services/ruta.service';
 })
 export class RoutesPage implements OnInit {
 
-  // rutas = [
-  //   {
-  //     nombre: 'Ruta 1',
-  //     clientes : [{nombre: 'Local 1'},{nombre: 'Empresa 3'},{nombre: 'Comercial 9'}]
-  //   },
-  //   {
-  //     nombre: 'Ruta 2',
-  //     clientes : [{nombre: 'Local 12'},{nombre: 'Empresa 8'},{nombre: 'Comercial 2'}]
-  //   },
-  //   {
-  //     nombre: 'Ruta 3',
-  //     clientes : [{nombre: 'Local 4'},{nombre: 'Empresa 7'},{nombre: 'Comercial 5'}]
-  //   },
-  // ];
+
 
   rutas = null;
+  subscription: Subscription;
 
   constructor(private rutaService: RutaService,
-              public loadingController: LoadingController) { }
+    public loadingController: LoadingController,
+    public router: Router) { }
 
-  ngOnInit() {
+  public async ngOnInit(): Promise<void> {
+    await this.onEnter();
+
+    this.subscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd && event.url === '/home/routes') {
+        this.onEnter();
+      }
+    });
   }
 
-  ionViewWillEnter(){
+  public async onEnter(): Promise<void> {
     this.listarRutas();
   }
+
+  // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
+  public ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
 
   async listarRutas() {
     const loading = await this.loadingController.create({
