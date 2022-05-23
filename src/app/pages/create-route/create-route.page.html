@@ -6,21 +6,20 @@
 </ion-header>
 
 <ion-content>
-  <ion-list class="ion-padding" >
-  
-    <ion-item fill="outline" class="ion-margin-bottom">
-      <ion-label position="floating" >Codigo</ion-label>
-      <ion-input ></ion-input>
-    </ion-item>
-    <ion-item fill="outline" class="ion-margin-bottom">
-      <ion-label position="floating" >Descripcion</ion-label>
-      <ion-input ></ion-input>
-    </ion-item>
+  <form [formGroup]="rutaForm" (ngSubmit)="guardarRuta()">
+    <ion-list class="ion-padding">
+      <ion-item fill="outline" class="ion-margin-bottom">
+        <ion-label position="floating">Codigo</ion-label>
+        <ion-input formControlName="codigo" [disabled]="true"></ion-input>
+      </ion-item>
+      <ion-item fill="outline" class="ion-margin-bottom">
+        <ion-label position="floating">Descripcion</ion-label>
+        <ion-input formControlName="descripcion"></ion-input>
+      </ion-item>
+    </ion-list>
 
-  </ion-list>
-
-  <ion-button expand="block" [routerLink]="['/home/routes']" >Guardar Ruta</ion-button>
-
-
-
+    <ion-button expand="block" type="submit"
+      >Guardar Ruta</ion-button
+    >
+  </form>
 </ion-content>

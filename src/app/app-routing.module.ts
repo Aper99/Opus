@@ -40,7 +40,7 @@ const routes: Routes = [
     loadChildren: () => import('./components/tab/tab.module').then( m => m.TabPageModule)
   },
   {
-    path: 'create-route',
+    path: 'create-route/:id',
     loadChildren: () => import('./pages/create-route/create-route.module').then( m => m.CreateRoutePageModule)
   },
   {
