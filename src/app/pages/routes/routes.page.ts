@@ -43,7 +43,6 @@ export class RoutesPage implements OnInit {
     await loading.present();
 
     this.rutaService.listGroup().subscribe(data => {
-      console.log(data.rutas);
       if (data.success) {
         this.rutas = data.rutas;
       } else {
