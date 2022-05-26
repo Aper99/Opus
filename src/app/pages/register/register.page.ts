@@ -62,7 +62,7 @@ export class RegisterPage implements OnInit {
 
     this.usuarioService.create(tmpUsuario).subscribe(async (data: any) => {
       loading.dismiss();
-      const message = data.success ? 'Usuario guardado con exito' : 'Error al guardar el usuario. Intente de nuevo más tarde';
+      const message = data.success ? 'Usuario guardado con exito' : data.error;
       const toast = await this.toastController.create({
         message,
         duration: 2000
