@@ -6,31 +6,33 @@
 </ion-header>
 
 <ion-content>
+  <form [formGroup]="usuarioForm" (ngSubmit)="guardarUsuario()">
   <ion-list class="ion-padding">
     <ion-item fill="outline" class="ion-margin-bottom">
       <ion-label position="floating">Nombre</ion-label>
-      <ion-input></ion-input>
+      <ion-input formControlName="name"></ion-input>
     </ion-item>
 
     <ion-item fill="outline" class="ion-margin-bottom">
       <ion-label position="floating">Email</ion-label>
-      <ion-input type="email"></ion-input>
+      <ion-input type="email" formControlName="email"></ion-input>
     </ion-item>
 
     <ion-item fill="outline" class="ion-margin-bottom">
       <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input type="password" formControlName="passwd"></ion-input>
     </ion-item>
 
     <ion-item fill="outline" class="ion-margin-bottom">
       <ion-label position="floating">Confirmar Contraseña</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input type="password" formControlName="passwdc"></ion-input>
     </ion-item>
 
 
   </ion-list>
 
-  <ion-button expand="block" [routerLink]="['/login']"
+  <ion-button  type="submit"  expand="block" [disabled]="!usuarioForm.valid"
     >Registrarse</ion-button
   >
+  </form>
 </ion-content>
