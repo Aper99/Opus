@@ -26,6 +26,10 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
+  ionViewWillEnter() {
+    this.credentials.reset();
+  }
+
   async login(){
     const loading = await this.loadingController.create();
     await loading.present();
