@@ -4,6 +4,7 @@ import { Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingController, ToastController, AlertController } from '@ionic/angular';
 import { EmpleadoService } from 'src/app/services/empleado.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-employee',
@@ -22,9 +23,11 @@ export class EmployeePage implements OnInit {
 
 
   public codigo: string;
+  public usuarios = null;
 
   constructor(private activatedRoute: ActivatedRoute,
     private empleadoService: EmpleadoService,
+    private usuarioService: UsuarioService,
     private fb: FormBuilder,
     public loadingController: LoadingController,
     public toastController: ToastController,
@@ -32,7 +35,7 @@ export class EmployeePage implements OnInit {
     public alertController: AlertController) { }
 
   ngOnInit() {
-
+    this.obtenerUsuarios();
     this.obtenerEmpleados();
   }
 
@@ -111,6 +114,17 @@ export class EmployeePage implements OnInit {
 
 
 
+  }
+
+  private async obtenerUsuarios(){
+    this.usuarioService.list().subscribe((data)=>{
+      if (data.success){
+        this.usuarios = data.usuarios;
+      }else{
+        this.usuarios = null;
+      }
+    }
+    );
   }
 
   private async obtenerEmpleados() {
