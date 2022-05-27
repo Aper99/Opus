@@ -23,7 +23,7 @@ export class TopicsPage implements OnInit {
   }
 
 
-  private async listarSistemas() {
+  public async listarSistemas() {
 
     const loading = await this.loadingController.create({
       message: 'Consultando...',

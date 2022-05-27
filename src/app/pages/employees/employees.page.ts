@@ -23,7 +23,7 @@ export class EmployeesPage implements OnInit {
   }
 
 
-  private async listarEmpleados() {
+  public async listarEmpleados() {
 
     const loading = await this.loadingController.create({
       message: 'Consultando...',
