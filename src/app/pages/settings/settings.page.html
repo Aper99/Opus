@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title>Configuraciones</ion-title>
     <ion-buttons slot="end">
-      <ion-button>
+      <ion-button (click)="guardarConfiguraciones()">
         <ion-icon slot="icon-only" name="save-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -13,10 +13,12 @@
 </ion-header>
 
 <ion-content>
-  <ion-list class="ion-padding">
-    <ion-item fill="outline" class="ion-margin-bottom">
-      <ion-label position="floating">Nombre de la Empresa</ion-label>
-      <ion-input value="Empresa Falsa"></ion-input>
-    </ion-item>
-  </ion-list>
+  <form [formGroup]="configForm">
+    <ion-list class="ion-padding">
+      <ion-item fill="outline" class="ion-margin-bottom">
+        <ion-label position="floating">Nombre de la Empresa</ion-label>
+        <ion-input formControlName="nombre"></ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
 </ion-content>
