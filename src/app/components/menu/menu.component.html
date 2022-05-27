@@ -1,4 +1,4 @@
-<ion-menu side="start" content-id="main-content">
+<ion-menu side="start" content-id="main-content" (ionWillOpen) ='abrir()'>
   <ion-header>
     <ion-toolbar translucent color="tertiary">
       <ion-title>Menu</ion-title>
@@ -11,7 +11,7 @@
           />
         </ion-avatar>
         <ion-label [routerLink]="'/user'">
-          <h2>Usuario 1</h2>
+          <h2>{{user?.name}}</h2>
           <p>Empresa Falsa</p>
         </ion-label>
       </ion-item>

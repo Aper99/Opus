@@ -10,28 +10,32 @@
 
 <ion-content>
   <ion-card>
+    <form [formGroup]="usuarioForm" (ngSubmit)="guardarUsuario()">
     <ion-card-header>
       <img
         src="https://www.slotcharter.net/wp-content/uploads/2020/02/no-avatar.png"
       />
-      <ion-card-title>Usuario 1</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-list>
+        <ion-item fill="outline" class="ion-margin-bottom">
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input formControlName="name"></ion-input>
+        </ion-item>
           <h5>Datos de Acceso a la App</h5>
         <ion-item fill="outline" class="ion-margin-bottom">
           <ion-label position="floating">E-mail</ion-label>
-          <ion-input></ion-input>
+          <ion-input formControlName="email"></ion-input>
         </ion-item>
 
         <ion-item fill="outline" class="ion-margin-bottom">
           <ion-label position="floating">Contraseña</ion-label>
-          <ion-input type="password" ></ion-input>
+          <ion-input type="password" formControlName="passwd"></ion-input>
         </ion-item>
       </ion-list>
     </ion-card-content>
 
-    <ion-button expand="block" >Guardar Usuario</ion-button>
-
+    <ion-button expand="block" type="submit">Guardar Usuario</ion-button>
+  </form>
   </ion-card>
 </ion-content>

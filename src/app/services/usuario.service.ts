@@ -24,7 +24,7 @@ export class UsuarioService {
     return this.http.get(this.endPointUrl,{headers: this.oHeader});
   }
 
-  public getById( codigo: string): Observable<any>{
+  public getById( codigo: string | number): Observable<any>{
     this.tokenHeader();
     return this.http.get(this.endPointUrl+'/find/'+codigo,{headers: this.oHeader});
   }
