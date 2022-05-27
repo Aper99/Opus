@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Storage } from '@capacitor/storage';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
@@ -10,6 +11,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class MenuComponent implements OnInit {
 
+  public nombre = null;
   public user = null;
   private helper = new JwtHelperService();
 
@@ -18,7 +20,9 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
   }
-  abrir(){
+  async abrir(){
+    const nombre = await Storage.get({key: 'empresa-nombre'});
+    this.nombre = nombre.value;
     const decodedToken = this.helper.decodeToken(this.authService.getToken());
     this.user = decodedToken;
   }
