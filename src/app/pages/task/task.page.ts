@@ -129,7 +129,6 @@ export class TaskPage implements OnInit {
       tra_obs: tarea.obs,
     };
 
-console.log(tmpTarea);
     this.tareaService.create(tmpTarea).subscribe(async (data: any) => {
       loading.dismiss();
       const message = data.success ? 'Tarea actualizada con exito' : 'Error al guardar la Tarea. Intente de nuevo más tarde';

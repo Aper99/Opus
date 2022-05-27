@@ -5,7 +5,7 @@ import { GetResult, Storage } from '@capacitor/storage';
 import { BehaviorSubject, from, Observable } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 
-const TOKEN_KEY = 'my-token';
+export const TOKEN_KEY = 'my-token';
 
 @Injectable({
   providedIn: 'root'
@@ -50,7 +50,7 @@ export class AuthenticationService {
     const oHeader = new HttpHeaders();
     this.oHeader= oHeader.set('Authorization',this.token);
     this.token='';
-    this.http.get(`http://localhost:3000/users/logout`,{headers:this.oHeader}).subscribe(data => console.log(data));
+    this.http.get(`http://localhost:3000/users/logout`,{headers:this.oHeader}).subscribe(data => {});
     this.isAuthenticated.next(false);
     return Storage.remove({key: TOKEN_KEY});
   }

@@ -17,7 +17,6 @@ export class AuthGuard implements CanLoad {
       filter(val => val != null),
       take(1),
       map(isAuthenticated =>{
-        console.log('GUARD:', isAuthenticated);
 
         if (isAuthenticated){
           return true;

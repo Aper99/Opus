@@ -16,11 +16,14 @@ export class TareaService {
               private authService: AuthenticationService) { }
 
 
-  public list(estado?: string): Observable<any>{
+  public list(estado?: string, usuario?: string): Observable<any>{
     this.tokenHeader();
     let oParams = new HttpParams();
     if (estado){
-      oParams =oParams.set('estado',estado);
+      oParams =oParams.append('estado',estado);
+    }
+    if (usuario){
+      oParams =oParams.append('usuario',usuario);
     }
 
     return this.http.get(this.endPointUrl,{params: oParams,headers: this.oHeader});

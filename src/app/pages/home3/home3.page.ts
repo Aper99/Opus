@@ -1,9 +1,13 @@
 /* eslint-disable max-len */
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { LoadingController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
+import { AuthenticationService, TOKEN_KEY } from 'src/app/services/authentication.service';
 import { TareaService } from 'src/app/services/tarea.service';
+import { Storage } from '@capacitor/storage';
+
 
 @Component({
   selector: 'app-home3',
@@ -15,8 +19,11 @@ export class Home3Page implements OnInit {
   estado = 'all';
   tareas = null;
   subscription: Subscription;
+  public user = null;
+  private helper = new JwtHelperService();
 
   constructor(private tareaService: TareaService,
+    private authService: AuthenticationService,
     private router: Router,
     public loadingController: LoadingController) { }
 
@@ -31,6 +38,9 @@ export class Home3Page implements OnInit {
   }
 
   public async onEnter(): Promise<void> {
+    const token = await Storage.get({key: TOKEN_KEY});
+    const decodedToken = this.helper.decodeToken(token.value);
+    this.user = decodedToken;
     this.listarTareas();
   }
 
@@ -47,8 +57,9 @@ export class Home3Page implements OnInit {
     await loading.present();
 
     const tmpEstado = this.estado === 'all' ? null : this.estado;
+    const tmpUsuario = this.user && this.user.id ? this.user.id : null;
 
-    this.tareaService.list(tmpEstado).subscribe(data => {
+    this.tareaService.list(tmpEstado,tmpUsuario).subscribe(data => {
       if (data.success) {
         this.tareas = data.tareas;
       } else {
