@@ -1,7 +1,7 @@
 /* eslint-disable arrow-body-style */
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Storage } from '@capacitor/storage';
+import { GetResult, Storage } from '@capacitor/storage';
 import { BehaviorSubject, from, Observable } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 
@@ -13,8 +13,13 @@ const TOKEN_KEY = 'my-token';
 export class AuthenticationService {
   isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
   token = '';
+  private oHeader: HttpHeaders;
   constructor(private http: HttpClient) {
     this.loadToken();
+   }
+
+  getToken(){
+     return this.token;
    }
 
   async loadToken(){
@@ -32,6 +37,7 @@ export class AuthenticationService {
     return this.http.post(`http://localhost:3000/users/login`,credentials).pipe(
       map((data: any) =>data.token),
       switchMap(token =>{
+        this.token =token;
         return from(Storage.set({key: TOKEN_KEY, value: token}));
       }),
       tap(_ =>{
@@ -41,6 +47,10 @@ export class AuthenticationService {
   }
 
   logout(): Promise<void>{
+    const oHeader = new HttpHeaders();
+    this.oHeader= oHeader.set('Authorization',this.token);
+    this.token='';
+    this.http.get(`http://localhost:3000/users/logout`,{headers:this.oHeader}).subscribe(data => console.log(data));
     this.isAuthenticated.next(false);
     return Storage.remove({key: TOKEN_KEY});
   }
